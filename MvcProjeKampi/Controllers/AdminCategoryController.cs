@@ -22,13 +22,13 @@ namespace MvcProjeKampi.Controllers
         }
 
         [HttpGet]
-        public ActionResult CategoryAdd()
+        public ActionResult AddCategory()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult CategoryAdd(Category category)
+        public ActionResult AddCategory(Category category)
         {
             CategoryValidator categoryValidator = new CategoryValidator();
             ValidationResult validationResult = categoryValidator.Validate(category);
@@ -45,6 +45,27 @@ namespace MvcProjeKampi.Controllers
                 }
             }
             return View();
+        }
+
+        public ActionResult DeleteCategory(int id)
+        {
+            var categoryValue = categoryManager.GetById(id);
+            categoryManager.CategoryDelete(categoryValue);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult EditCategory(int id)
+        {
+            var categoryValue = categoryManager.GetById(id);
+            return View(categoryValue);
+        }
+
+        [HttpPost]
+        public ActionResult EditCategory(Category category)
+        {
+            categoryManager.CategoryUpdate(category);
+            return RedirectToAction("Index");
         }
     }
 }
