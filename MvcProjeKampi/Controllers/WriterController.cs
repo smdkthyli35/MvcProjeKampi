@@ -11,30 +11,30 @@ using System.Web.Mvc;
 
 namespace MvcProjeKampi.Controllers
 {
-    public class AdminCategoryController : Controller
+    public class WriterController : Controller
     {
-        CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
-        CategoryValidator categoryValidator = new CategoryValidator();
+        WriterManager writerManager = new WriterManager(new EfWriterDal());
+        WriterValidator writerValidator = new WriterValidator();
 
         public ActionResult Index()
         {
-            var categoryValues = categoryManager.GetAll();
-            return View(categoryValues);
+            var writerValue = writerManager.GetAll();
+            return View(writerValue);
         }
 
         [HttpGet]
-        public ActionResult AddCategory()
+        public ActionResult AddWriter()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult AddCategory(Category category)
+        public ActionResult AddWriter(Writer writer)
         {
-            ValidationResult validationResult = categoryValidator.Validate(category);
+            ValidationResult validationResult = writerValidator.Validate(writer);
             if (validationResult.IsValid)
             {
-                categoryManager.Add(category);
+                writerManager.Add(writer);
                 return RedirectToAction("Index");
             }
             else
@@ -44,30 +44,24 @@ namespace MvcProjeKampi.Controllers
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
+
             return View();
         }
-
-        public ActionResult DeleteCategory(int id)
-        {
-            var categoryValue = categoryManager.GetById(id);
-            categoryManager.Delete(categoryValue);
-            return RedirectToAction("Index");
-        }
-
+        
         [HttpGet]
-        public ActionResult EditCategory(int id)
+        public ActionResult EditWriter(int id)
         {
-            var categoryValue = categoryManager.GetById(id);
-            return View(categoryValue);
+            var editWriter = writerManager.GetById(id);
+            return View(editWriter);
         }
 
         [HttpPost]
-        public ActionResult EditCategory(Category category)
+        public ActionResult EditWriter(Writer writer)
         {
-            ValidationResult validationResult = categoryValidator.Validate(category);
+            ValidationResult validationResult = writerValidator.Validate(writer);
             if (validationResult.IsValid)
             {
-                categoryManager.Update(category);
+                writerManager.Update(writer);
                 return RedirectToAction("Index");
             }
             else

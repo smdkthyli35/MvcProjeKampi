@@ -40,7 +40,7 @@ namespace MvcProjeKampi.Controllers
             ValidationResult validationResult = categoryValidator.Validate(category);
             if (validationResult.IsValid)
             {
-                categoryManager.CategoryAdd(category);
+                categoryManager.Add(category);
                 return RedirectToAction("Index");
             }
             else
