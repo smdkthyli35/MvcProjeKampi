@@ -19,7 +19,7 @@
         <div class="card">
             <div class="card-header">
                 <h2 class="card-title">Başlık İşlemleri</h2>
-                <a style="float:right; margin-right:5px;" class="btn btn-success" href="#">
+                <a style="float:right; margin-right:5px;" class="btn btn-success" href="/Heading/AddHeading/">
                     <i style="padding:5px" class="fas fa-pencil-alt">
                     </i>
                     Yeni Başlık Ekle
@@ -74,12 +74,12 @@
                                 <span class="badge badge-success">@item.Category.CategoryName</span>
                             </td>
                             <td class="project-actions text-right">
-                                <a class="btn btn-primary btn-sm" href="#">
+                                <a class="btn btn-primary btn-sm" href="/Content/ContentByHeading/@item.HeadingId">
                                     <i class="fas fa-folder">
                                     </i>
-                                     İçerikler
+                                     Yazılar
                                 </a>
-                                <a class="btn btn-info btn-sm" href="#">
+                                <a class="btn btn-info btn-sm" href="/Heading/EditHeading/@item.HeadingId">
                                     <i class="fas fa-pencil-alt">
                                     </i>
                                     Düzenle
