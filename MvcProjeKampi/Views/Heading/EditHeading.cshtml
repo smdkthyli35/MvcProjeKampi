@@ -10,6 +10,8 @@
 @using (Html.BeginForm("EditHeading", "Heading", FormMethod.Post))
 {
     @Html.HiddenFor(h => h.HeadingId, new { @class = "form-control" })
+    @Html.HiddenFor(h => h.WriterId, new { @class = "form-control" })
+
 
     <div class="form-group mb-3">
         @Html.Label("Başlık Adı")
